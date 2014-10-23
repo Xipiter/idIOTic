@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.5
+#!/usr/bin/env python
 """
 
   Simple stuff for simple devices.
@@ -58,6 +58,12 @@ class MasterUI(BaseUI):
                 just type "subcmdexample"
         """
         subcmdexample.SubCmdExample("SubCmdExample", "").cmdloop()
+
+    def do_sucasaext(self, *args):
+        """
+            A more extended interactive submenu for exploitation of "sucasa" devices.
+        """
+        sucasa_ext.SuCasa("SuCasaEsMiCasa", "").cmdloop()
  
     def do_pdb(self, *args):
         """

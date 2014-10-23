@@ -35,7 +35,7 @@ class BaseUI(Cmd):
 
     def do_help(self, args):
         """
-           Getting help on "help" is kinda retarded dont you think?
+           Getting help on "help" is kinda pointless don't you think?
         """
         #The only reason to define this method is for the help text in the
         #docstring   
