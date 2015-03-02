@@ -16,7 +16,7 @@ This is an idIOTic submenu command example.
         be done automatically...but for now I am being lazy, so this is how it is done.
 
 """
-from mods import * #Any modules that plan to be idIOTic submenu command need this line
+from modules.mods import * #Any modules that plan to be idIOTic submenu command need this line
 
 class SubCmdExample(AnotherUI):
     """
@@ -26,13 +26,13 @@ class SubCmdExample(AnotherUI):
         """
             To do the thing, just enter the command "dothething"
         """
-        print "I just did the thing. Underwhelming huh?"
-        print "args: %s" % args
+        print ("I just did the thing. Underwhelming huh?")
+        print ("args: %s" % args)
     
     def do_dotheotherthing(self, args):
         """
             To do the OTHER thing, just enter the command "dotheotherthing"
         """
-        print "I just did the OTHER thing. Let's do t again sometime!"
-        print "args: %s" % args
+        print ("I just did the OTHER thing. Let's do t again sometime!")
+        print ("args: %s" % args)
 
