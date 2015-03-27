@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
 
   Simple stuff for simple devices.
@@ -10,7 +10,7 @@ import os
 import sys
 import pprint 
 import threading
-import md5
+import hashlib
 import pickle
 import code
 import pprint as pp
@@ -27,7 +27,11 @@ class MasterUI(BaseUI):
 
             ...oooOOO The Internet of Things is idIOTic OOOooo...
    
-"""
+        """
+        import sys;
+        if(sys.version_info.major < 3):
+            print("You need to use Python 3.0 or above to run idIOTic.")
+            exit()
 #        self.doc_header = ""
 #        self.undoc_header = ""
         self.misc_header = ""
@@ -40,7 +44,7 @@ class MasterUI(BaseUI):
         try:
             code.interact("\n\nDropping to Python shell.", None, locals())
         except KeyboardInterrupt:
-            print "Returning to '%s'..." % self.prompt
+            print ("Returning to '%s'..." % self.prompt)
 
 #    def do_another_UI(self, *args):
 #       """ 
@@ -118,7 +122,7 @@ def load_module_cmds(classref):
         for needle in dir(tmp):
            # print needle
             if needle == "execute":
-                print "Loading '%s' as a 'simple' idIOTic execute module..." % tmp.__name__
+                print ("Loading '%s' as a 'simple' idIOTic execute module..." % tmp.__name__)
                 try:
                     his = getattr(tmp,"execute")
                     setattr(classref, "do_"+tmp.__name__.split('.')[1], his)
@@ -152,4 +156,4 @@ if __name__ == '__main__':
                                   #into the class for MasterUI. See load_module_cmd comments for info.
     ui_classref("idIOTic", """""").cmdloop()
 else:
-    print __doc__
+    print (__doc__)

@@ -77,7 +77,7 @@ class BaseUI(Cmd):
             stub.
         """
         Cmd.postloop(self)   ## Clean up command completion
-        print "\nExiting..."
+        print ("\nExiting...")
 
     def precmd(self, line):
         """ 
@@ -105,9 +105,9 @@ class BaseUI(Cmd):
         """
         try:
             exec(line) in self._locals, self._globals
-        except Exception, e:
+        except (Exception, e):
             #print e.__class__, ":", e
-            print "\nBad command (%s)'" % (e)
+            print ("\nBad command (%s)'" % (e))
 
     def do_exit(self, args):
         """
@@ -132,4 +132,4 @@ class AnotherUI(BaseUI):
     
     def do_thing(self, *args):
         """ Do the thing """
-        print "thing"
+        print ("thing")
